@@ -1,0 +1,85 @@
+<?php
+ 
+use Drupal\Component\Utility\Html;
+ 
+/**
+ * Helper function to get basic user details.
+ *
+ * @return array
+ */
+function tl_session_get_user_details() {
+  $details = [
+    'name' => '',
+    'mail' => '',
+    'phone' => '',
+  ];
+ 
+  $account = \Drupal::currentUser();
+  if ($account->id() > 0) {
+    $details['name'] = "Harry";
+    $extra_info =  "Extra Info";
+    $details['mail'] = "manasdhumal159@gmail.com";
+    $details['phone'] = "8291734950";
+  }
+ 
+ 
+  return $details;
+}
+ 
+/**
+ * Implements hook_mail().
+ */
+function tl_session_mail($key, &$message, $params) {
+  switch ($key) {
+    case 'send_enquiry':
+    case 'send_message':
+      $message['from'] = 'no-reply@stat.org.uk';
+      $message['subject'] = Html::escape($params['subject']);
+      $message['body'][] = Html::escape($params['message']);
+      break;
+  }
+}
+ 
+/**
+ * Custom function for mail.
+ *
+ * @param $data
+ */
+function tl_session_send_mail($data) {
+  // Load the site name out of configuration.
+  $config = \Drupal::config('system.site');
+  $site_name = $config->get('name');
+ 
+  $mailManager = \Drupal::service('plugin.manager.mail');
+  $module = 'tl_session';
+  $key = $data['mail_type'];
+  $to = $data['mail_to'];
+  // Uncomment for testing.
+  // $to = \Drupal::currentUser()->getEmail();
+  $params['reply-to'] = $data['sender_email'];
+ 
+  $params['subject'] = $site_name . ' ' . $data['sender_name'] . ' sent you a message';
+  $params['message'] = 'Dear ' . $data['contact_name'] . ',
+' . $data['sender_name'] . ' has sent you a message via your contact form at ' . $site_name . '.
+ 
+Message:
+' . $data['sender_message'] . '
+ 
+---
+ 
+Contact
+Name: ' . $data['sender_name'] . '
+Email: ' . $data['sender_email'] . '
+Phone: ' . $data['sender_phone'];
+ 
+  $langcode = \Drupal::currentUser()->getPreferredLangcode();
+  $send = TRUE;
+ 
+  $result = $mailManager->mail($module, $key, $to, $langcode, $params, NULL, $send);
+  if ($result['result'] != TRUE) {
+    $message = t('There was a problem sending your email notification to @email.', ['@email' => $to]);
+    drupal_set_message($message, 'error');
+    \Drupal::logger('tl_session')->error($message);
+    return;
+  }
+}

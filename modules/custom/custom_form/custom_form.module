@@ -1,0 +1,77 @@
+<?php
+
+/**
+ * @file
+ * Contains custom_form.module.
+ */
+
+use Drupal\Core\Mail\MailManagerInterface;
+use Drupal\Component\Utility\SafeMarkup;
+use Drupal\Component\Utility\Html;
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function custom_form_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the custom_form module.
+    case 'help.page.custom_form':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('My Custom Module Form') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_mail()
+ */
+
+function custom_form_mail($key, &$message, $params)
+{
+
+	$options = array(
+    'langcode' => $message['langcode'],
+    );
+
+
+   switch($key)
+   {
+   	   case 'send_conformation_mail':
+   	      $message['from'] = \Drupal::config('system.site')->get('mail');
+   	      $message['subject'] = t('Your mail subject Here: @title', array('@title' => $params['title']), $options);
+          $message['body'][] = Html::escape($params['message']);
+       break;
+   }
+}
+
+function custom_form_send_mail()
+{
+	$mailManager = \Drupal::service('plugin.manager.mail');
+	$module= "custom_form";
+	$key= 'send_conformation_mail';
+	$to = \Drupal::currentUser()->getEmail();
+	$label= "custom title";
+	$params['message'] = $message;
+    $params['title'] = $label;
+    $langcode = \Drupal::currentUser()->getPreferredLangcode();
+    $send = true;
+
+    $result = $mailManager->mail($module, $key, $to, $langcode, $params, NULL, $send);
+  if (!$result['result']) {
+    $message = t('There was a problem sending your email notification to @email.', array('@email' => $to));
+    drupal_set_message($message, 'error');
+    \Drupal::logger('mail-log')->error($message);
+    return;
+   }
+
+  $message = t('An email notification has been sent to @email ', array('@email' => $to));
+  drupal_set_message($message);
+  \Drupal::logger('mail-log')->notice($message);
+
+}
+

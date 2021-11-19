@@ -1,0 +1,6 @@
+{% set user=  test_var %}
+<p class="hello">
+     {{ 'translate me'|t }}
+     {{ user }}
+ <a href="{{ path('entity.user.canonical', {'user': user }) }}">{{ 'View user profile'|t }}</a>
+</p>

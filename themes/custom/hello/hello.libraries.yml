@@ -1,0 +1,23 @@
+global-styling:
+  version: 1.x
+  css:
+    theme:
+      css/style1.css: {}
+  js:
+    js/style2.js: {}
+  regions:
+   sidebar_first: 'Left sidebar'
+   sidebar_second: 'Right sidebar'
+   content: 'Content'
+   header: 'Header'
+   primary_menu: 'Primary menu'
+   secondary_menu: 'Secondary menu'
+   footer: 'Footer'
+   highlighted: 'Highlighted'
+   help: 'Help'
+   page_top: 'Page top'
+   page_bottom: 'Page bottom'
+   breadcrumb: 'Breadcrumb'
+  dependencies:
+    - core/jquery
+    - core/drupalSettings

@@ -1,0 +1,52 @@
+<?php
+
+/**
+ * @file
+ * Contains custom_event.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Form\FormStateInterface;
+/**
+* Implement Hook User Login
+*/
+
+function hello_theme($existing, $type, $theme, $path) {
+  return [
+    'hello_block' => [
+      'variables' => ['test_var' => NULL],
+    ],
+  ];
+}
+
+
+/**
+ * Implement hook_form_alter
+ */
+
+function hello_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id)
+{
+       if($form_id == "contact_message_test_form_form")
+       {
+
+       	     //add phone field
+       	    $form['phone'] = array(
+		      '#title' => t('Your phone'),
+		      '#type' => 'textfield',
+	           );
+
+
+       }
+
+       
+} 
+
+
+
+
+
+
+
+
+
+

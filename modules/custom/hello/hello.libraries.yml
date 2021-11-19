@@ -1,0 +1,12 @@
+cuddly-slider:
+  version: 1.x
+  css:
+    layout:
+      css/layout.css: {}
+    theme:
+      css/theme.css: {}
+  js:
+    js/style.js: {}
+    
+  dependencies:
+    - core/jquery

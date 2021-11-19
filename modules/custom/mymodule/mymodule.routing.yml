@@ -1,0 +1,48 @@
+
+mymodule.default_controller_Fetch:
+  path: '/mymodule/Fetch'
+  defaults:
+    _controller: '\Drupal\mymodule\Controller\DefaultController::Fetch'
+    _title: 'fetch'
+  requirements:
+    _permission: 'access content'
+
+mymodule.default_controller_Update:
+  path: '/mymodule/updateData'
+  defaults:
+    _controller: '\Drupal\mymodule\Controller\DefaultController::updateData'
+    _title: 'updateData'
+  requirements:
+    _permission: 'access content'
+
+mymodule.default_controller_deleteData:
+  path: '/mymodule/deleteData'
+  defaults:
+    _controller: '\Drupal\mymodule\Controller\DefaultController::deleteData'
+    _title: 'deleteData'
+  requirements:
+    _permission: 'access content'
+
+mymodule.default_controller_upsertData:
+  path: '/mymodule/upsertData'
+  defaults:
+    _controller: '\Drupal\mymodule\Controller\DefaultController::upsertData'
+    _title: 'upsertData'
+  requirements:
+    _permission: 'access content'
+
+mymodule.custom_form1:
+  path: '/mymodule/form/custom_form1'
+  defaults:
+    _form: '\Drupal\mymodule\Form\CustomForm1'
+    _title: 'CustomForm1'
+  requirements:
+    _access: 'TRUE'
+
+mymodule.custom_service_test1:
+  path: '/mymodule/service/test1'
+  defaults:
+    _controller: '\Drupal\mymodule\Controller\DefaultController::serviceTest'
+    _title: 'serviceTest'
+  requirements:
+    _permission: 'access content'

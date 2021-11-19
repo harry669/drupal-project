@@ -1,0 +1,7 @@
+name: hello
+description: Creates a page showing "Hello World".
+package: Custom
+libraries:
+  - hello/cuddly-slider
+type: module
+core: 8.x

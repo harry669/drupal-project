@@ -1,0 +1,5 @@
+name: 'tl_session'
+type: module
+description: 'My Second Custom Module'
+core: 8.x
+package: 'Custom'

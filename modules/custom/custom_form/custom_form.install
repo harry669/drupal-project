@@ -1,0 +1,54 @@
+<?php
+
+/**
+ *  hook_install()
+ */
+
+/**
+ * hook_schema()
+ */
+
+function custom_form_schema() {
+
+  $schema['custom_form_data'] = array(
+    'description' => 'Store Custom Form Data',
+    'fields' => array(
+
+      'did' => array(
+        'type' => 'serial',
+        'not null' => TRUE,
+        'description' => 'Primary Key: Unique developer ID.',
+      ),
+    
+      'uid' => array(
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+        'description' => "Customer Uid",
+      ),
+
+      'name' => array(
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+        'description' => 'Name of the Customer.',
+      ),
+    ),
+    'primary key' => array('did'),
+    'indexes' => array(
+      'name' => array('name'),
+      'age' => array('uid'),
+    ),
+  );
+  return $schema;
+}
+
+/**
+ *Implement hook_uninstall
+ */
+
+function custom_form_uninstall()
+{
+     \Drupal::database()->schema()->dropTable('custom_form_data');
+}

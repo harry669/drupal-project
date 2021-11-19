@@ -1,0 +1,7 @@
+services:
+  logger.channel.mymodule:
+    parent: logger.channel_base
+    arguments: ['mymodule']
+  mymodule.default:
+    class: Drupal\mymodule\DefaultService
+    arguments: ['@database']

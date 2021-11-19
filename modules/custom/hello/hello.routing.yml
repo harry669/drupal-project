@@ -1,0 +1,8 @@
+hello.my_page:
+  path: '/mypage/hello'
+  defaults:
+    _controller: '\Drupal\hello\Controller\HelloController::print'
+    _title: 'My first page in D8'
+  requirements:
+    _permission: 'access content'
+ 

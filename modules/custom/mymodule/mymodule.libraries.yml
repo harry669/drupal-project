@@ -1,0 +1,9 @@
+cuddly-slider:
+  version: 1.x
+  css:
+    layout:
+      css/style.css: {}
+    theme:
+      css/style1.css: {}
+  js:
+    js/style.js: {}

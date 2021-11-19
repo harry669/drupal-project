@@ -1,0 +1,47 @@
+tl_session.teacher_contact_controller_openModalForm:
+  path: '/contact-teacher/{teacher}'
+  defaults:
+    _controller: '\Drupal\tl_session\Controller\TeacherContactController::openModalForm'
+    _title: 'openModalForm'
+  requirements:
+    _permission: 'access content'
+
+tl_session.teacher_contact_controller_createItem:
+  path: '/basic-pager/{id}'
+  defaults:
+    _controller: '\Drupal\tl_session\Controller\TeacherContactController::createItem'
+    _title: 'createItem'
+  requirements:
+    _permission: 'access content'
+
+tl_session.teacher_contact_controller_newItem:
+  path: '/entity-load'
+  defaults:
+    _controller: '\Drupal\tl_session\Controller\TeacherContactController:newItem'
+    _title: 'newItem'
+  requirements:
+    _permission: 'access content'
+
+tl_session.teacher_contact_controller_fetchData:
+  path: '/database-load'
+  defaults:
+    _controller: '\Drupal\tl_session\Controller\TeacherContactController:fetchData'
+    _title: 'fetchData'
+  requirements:
+    _permission: 'access content'
+
+tl_session.teacher_contact_controller_dynamicFetchData:
+  path: '/database-dynamic-load'
+  defaults:
+    _controller: '\Drupal\tl_session\Controller\TeacherContactController:dynamicFetchData'
+    _title: 'dynamicFetchData'
+  requirements:
+    _permission: 'access content'
+    
+tl_session.ajax_form1:
+  path: '/tl_session/form/ajax_form1'
+  defaults:
+    _form: '\Drupal\tl_session\Form\AjaxForm1'
+    _title: 'AjaxForm1'
+  requirements:
+    _access: 'TRUE'

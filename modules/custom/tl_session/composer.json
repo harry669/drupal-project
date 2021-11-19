@@ -1,0 +1,13 @@
+{
+    "name": "tl_session",
+    "type": "drupal-module",
+    "description": "My Second Custom Module",
+    "keywords": [
+    ],
+    "homepage": "https://www.drupal.org/project/tl_session",
+    "minimum-stability": "dev",
+    "support": {
+        "issues": "https://www.drupal.org/project/issues/tl_session",
+        "source": "http://cgit.drupalcode.org/tl_session",
+    },
+}
